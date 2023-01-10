@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('asset/image/Pizza-icon.png')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- feuille de style-->
+        <link rel="stylesheet" href="{{ asset('asset/css/style.css')}}">
+        {% block stylesheets %}
+      
+        {% endblock %}
+        <!-- javascript-->
+        <script src="{{ asset('asset/js/script.js')}}" defer></script>
+        {% block javascripts %}
+
+        {% endblock %}
+    </head>
+    <body>
+        {% include "_partials/_header.html.twig" %}
+        {% block body %}{% endblock %}
+        {% include "_partials/_footer.html.twig" %}
+    </body>
+</html>
