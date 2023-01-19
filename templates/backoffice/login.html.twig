@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}connexion{% endblock %}
+
+{% block body %}
+    <a href="/backoffice">retour à l'accueil de connexion</a>
+    <a href="/inscription">s'inscrire</a>
+
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('login') }}" method="post">
+        <label for="_username">Votre email</label>
+        <input type="text" name='_username' id="username">
+        <label for="_password">Votre mot de passe</label>
+        <input type="password" name="_password" id="password">
+
+        <input type="hidden" name="_target_path" value="/backoffice">
+
+        <button type="submit">Se connecter</button>
+    </form>
+{% endblock %}

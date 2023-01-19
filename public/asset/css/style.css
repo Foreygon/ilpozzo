@@ -10,6 +10,8 @@
     height: 150px;
 }
 
+
+
 /* =====================Background============================ */
 
 
@@ -197,6 +199,7 @@
     top: 65px;
     right: 0;
     background-color: #525252;
+    overflow-y: hidden; 
 }
 .show-nav .navbar__links{
     width: 100%;
@@ -212,7 +215,7 @@
     border: solid 2px black;
     background: transparent;
     cursor: pointer;
-    bottom: auto;
+    margin: 0 auto -142px;
     
 
 }
@@ -224,6 +227,7 @@
     background-color: #000000;
     border-radius: 3px;
     margin: 0.5px;
+   
 }
 .bar::before, .bar::after{
     content: "";
@@ -234,6 +238,7 @@
     background-color: #000000;
     border-radius: 3px;
     margin: 0.5px;
+ 
 }
 .bar::before{
     transform: translateY(-12px);
