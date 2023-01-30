@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!
+{% endblock %}
+
+{% block body %}
+
+	{{ message }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ form_start(editRoleUser) }}
+		{{ form_rest(editRoleUser) }}
+		{{ form_end(editRoleUser) }}
+	{% endif %}
+{% endblock %}

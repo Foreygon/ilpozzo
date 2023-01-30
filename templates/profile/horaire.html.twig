@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!
+{% endblock %}
+
+{% block body %}
+
+	{{ message }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ form_start(form) }}
+		{{ form_rest(form) }}
+		{{ form_end(form) }}
+
+		<div class="dpf fdc">
+			{% for time in times %}
+				<div class="dpf jsa">
+				<div>{{ time.day}}</div>
+					<div class="dpf jc">
+						
+						{% if time.openingTimeMoon.format('H:i') and time.closingTimeMoon.format('H:i') == '00:00' %}
+							Fermé
+						{% else %}
+
+							{% if time.openingTimeMoon.format('H:i') == '00:00' %}
+								Fermé
+							{% else %}
+								{{ time.openingTimeMoon|date('H:i') }}
+							{% endif %}
+							<p>
+								à
+							</p>
+							{% if time.closingTimeMoon.format('H:i') == "00:00" %}
+								Fermé
+							{% else %}
+								{{ time.closingTimeMoon|date('H:i') }}
+							{% endif %}
+						{% endif %}
+					</div>
+					<p>
+						-
+					</p>
+					<div class="dpf jc">
+						{% if time.openingTimeEvening.format('H:i') and time.closingTimeEvening.format('H:i') == '00:00' %}
+							Fermé
+						{% else %}
+							{% if time.openingTimeEvening.format('H:i') == "00:00" %}
+								Fermé
+							{% else %}
+								{{ time.openingTimeEvening|date('H:i') }}
+							{% endif %}
+							<p>
+								à
+							</p>
+							{% if time.closingTimeEvening.format('H:i') == "00:00" %}
+								Fermé
+							{% else %}
+								{{ time.closingTimeEvening|date('H:i') }}
+							{% endif %}
+						{% endif %}
+					</div>
+					{# <pre>
+																										{{ dump(time) }}
+																									</pre> #}
+
+
+				</div>
+
+			{% endfor %}
+		</div>
+	{% endif %}
+
+{% endblock %}
