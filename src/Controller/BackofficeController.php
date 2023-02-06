@@ -22,6 +22,7 @@ class BackofficeController extends AbstractController
             
         ]);
     }
+// ==========================================================================================
     #[Route('/backoffice/inscription', name: 'inscription')]
     public function inscription(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -41,6 +42,7 @@ class BackofficeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+// ==========================================================================================
     #[Route('/backoffice/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

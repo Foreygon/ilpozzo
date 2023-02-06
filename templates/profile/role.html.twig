@@ -6,6 +6,17 @@
 {% block body %}
 
 	{{ message }}
+	{% if is_granted('ROLE_ADMIN') %}
+		<p>Vous avez acces a:</p>
+		<div class="dpf fdc">
+			<a href="/backoffice/profile/role">Gestionnaire d'acces</a>
+			<a href="/backoffice/profile/horaire">Jours et horaires d'ouverture et de fermeture</a>
+			<a href="/backoffice/profile/carrousel">Gerer les image du carrousel</a>
+			<a href="/backoffice/profile/lacarte">Gestion des produit/plat de la carte</a>
+			<a href="/backoffice/profile/ardoise">Modifier l'ardoise du jour</a>
+			<a href="/backoffice/profile/ticket">Table reserver ou commande à emporter</a>
+		</div>
+	{% endif %}
 
 	{% if is_granted('ROLE_ADMIN') %}
 		{{ form_start(editRoleUser) }}

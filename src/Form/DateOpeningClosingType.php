@@ -27,7 +27,8 @@ class DateOpeningClosingType extends AbstractType
                     "Dimanche" => "dimanche",
                 ],
                 "placeholder" => "-Selectionné le jour-",
-                'label' => "Jour * "
+                'label' => "Jour * ",
+                
             ])
             ->add('opening_time_moon', TimeType::class, [
                 'label' => "Horaire d'ouvertue le midi *",
