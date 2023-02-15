@@ -22,6 +22,7 @@ class LacarteType extends AbstractType
     {
         $this->categories = $categorieRepository->findAll();
     }
+    
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -42,14 +43,27 @@ class LacarteType extends AbstractType
                     "cl" => "cl",
                 ],
             ])
-            
-           
+            ->add('uploadImage', FileType::class, [
+                // 'mapped' => false,
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier valide (JPEG, PNG ou GIF)',
+                    ])
+                ],
+            ])
             ->add('categorie', ChoiceType::class, [
                 'choices' => $categories,
                 'choice_label' => 'CategorieName',
             ])
             ->add('Envoyer', SubmitType::class);
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {

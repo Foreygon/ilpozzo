@@ -1,7 +1,8 @@
 parameters:
-  upload_dir: '%kernel.project_dir%/public/uploads'
+    upload_directory: '%kernel.project_dir%/public/uploads'
 
 services:
+    Symfony\Component\HttpFoundation\File\UploadedFile: ~
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -15,3 +16,6 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
+    App\Service\FileUploader:
+        arguments: ['%kernel.project_dir%/public/uploads']

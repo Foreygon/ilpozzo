@@ -116,75 +116,6 @@ class ProfileController extends AbstractController
         ]);
     }
     // ==========================================================================================
-    #[Route('/backoffice/profile/lacarte', name: 'lacarte')]
-    public function lacarte(Request $request, EntityManagerInterface $entityManagerInterface): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER', $subject = null, $message = "Acces refuser");
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $message = "Acces autoriser, bonjour Admin";
-
-            $lacarte = new Lacarte();
-            $formLacarte = $this->createForm(LacarteType::class, $lacarte);
-            $formLacarte->handleRequest($request);
-
-
-            if ($formLacarte->isSubmitted() && $formLacarte->isValid()) {
-                $lacarte = $formLacarte->getData();
-                $entityManagerInterface->persist($lacarte);
-                $entityManagerInterface->flush();
-
-                return $this->redirectToRoute('lacarte');
-            }
-
-            return $this->render('profile/lacarte.html.twig', [
-                'controller_name' => 'ProfileController',
-                'message' => $message,
-                'form' => $formLacarte->createView(),
-            ]);
-        }
-
-        return $this->render('profile/lacarte.html.twig', [
-            'controller_name' => 'ProfileController',
-            'message' => $message
-        ]);
-    }
-
-
-    // ==========================================================================================
-    #[Route('/backoffice/profile/lacarte/categorie', name: 'categorie')]
-    public function categorie(Request $request, EntityManagerInterface $entityManagerInterface, CategorieRepository $categorieRepository): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER', $subject = null, $message = "Acces refuser");
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $message = "Acces autoriser, bonjour Admin";
-
-            $categorie = new Categorie();
-            $formCategorie = $this->createForm(CategorieType::class, $categorie);
-
-            $formCategorie->handleRequest($request);
-
-            if ($formCategorie->isSubmitted() && $formCategorie->isValid()) {
-                $entityManagerInterface->persist($categorie);
-                $entityManagerInterface->flush();
-            }
-
-            $categoriesRepos = new Categorie();
-            $categoriesRepos = $categorieRepository->findAll();
-
-            return $this->render('profile/_categorie.html.twig', [
-                'controller_name' => 'ProfileController',
-                'message' => $message,
-                'form' => $formCategorie->createView(),
-                'categories' => $categoriesRepos,
-            ]);
-        }
-
-        return $this->render('profile/_categorie.html.twig', [
-            'controller_name' => 'ProfileController',
-            'message' => $message,
-        ]);
-    }
-    // ==========================================================================================
     #[Route('/backoffice/profile/carrousel', name: 'carrousel')]
     public function carrousel(): Response
     {
@@ -215,7 +146,7 @@ class ProfileController extends AbstractController
             if ($formDateOpeningClosingTime->isSubmitted() && $formDateOpeningClosingTime->isValid()) {
                 $entityManagerInterface->persist($dateOpeningClosingTime);
                 $entityManagerInterface->flush();
-                return $this->redirect('/backoffice/profile/horaire');
+                return $this->redirectToRoute('horaire');
             }
 
             $times = new DateOpeningClosingTime();

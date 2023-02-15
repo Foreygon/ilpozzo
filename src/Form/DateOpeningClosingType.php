@@ -28,7 +28,6 @@ class DateOpeningClosingType extends AbstractType
                 ],
                 "placeholder" => "-Selectionné le jour-",
                 'label' => "Jour * ",
-                
             ])
             ->add('opening_time_moon', TimeType::class, [
                 'label' => "Horaire d'ouvertue le midi *",
@@ -36,7 +35,6 @@ class DateOpeningClosingType extends AbstractType
                 
                 'minutes' => [0, 15, 30, 45],
                 'widget' => 'choice',
-
             ])
             ->add('closing_time_moon', TimeType::class, [
                 'label' => "Horaire de fermeture le midi *",
@@ -59,7 +57,6 @@ class DateOpeningClosingType extends AbstractType
                 
                 'minutes' => [0, 15, 30, 45],
                 'widget' => 'choice',
-
             ])
             ->add("Envoyer", SubmitType::class);
     }

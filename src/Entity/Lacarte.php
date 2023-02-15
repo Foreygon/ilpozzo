@@ -33,6 +33,9 @@ class Lacarte
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Upload $uploadImage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +112,18 @@ class Lacarte
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getUploadImage(): ?Upload
+    {
+        return $this->uploadImage;
+    }
+
+    public function setUploadImage(?Upload $uploadImage): self
+    {
+        $this->uploadImage = $uploadImage;
 
         return $this;
     }
